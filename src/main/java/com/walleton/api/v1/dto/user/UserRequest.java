@@ -1,4 +1,4 @@
-package com.walleton.dto.user;
+package com.walleton.api.v1.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

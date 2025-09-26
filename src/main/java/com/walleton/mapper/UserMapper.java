@@ -1,8 +1,8 @@
 package com.walleton.mapper;
 
 import com.walleton.domain.model.User;
-import com.walleton.dto.user.UserRequest;
-import com.walleton.dto.user.UserResponse;
+import com.walleton.api.v1.dto.user.UserRequest;
+import com.walleton.api.v1.dto.user.UserResponse;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -20,8 +20,8 @@ public interface UserMapper {
     List<UserResponse> toResponseList(List<User> users);
 
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "firstname", source = "firstname")
-    @Mapping(target = "lastname", source = "lastName")
+    @Mapping(target = "firstName", source = "firstName")
+    @Mapping(target = "lastName", source = "lastName")
     @Mapping(target = "email", source = "email")
     @Mapping(target = "phoneNumber", source = "phoneNumber")
     void updateEntityFromDto(UserRequest dto, @MappingTarget User entity);
