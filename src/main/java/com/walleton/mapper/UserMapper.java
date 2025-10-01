@@ -1,8 +1,8 @@
 package com.walleton.mapper;
 
-import com.walleton.domain.model.User;
 import com.walleton.api.v1.dto.user.UserRequest;
 import com.walleton.api.v1.dto.user.UserResponse;
+import com.walleton.domain.model.User;
 import org.mapstruct.*;
 
 import java.util.List;

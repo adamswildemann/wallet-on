@@ -1,8 +1,8 @@
 package com.walleton.service;
 
-import com.walleton.domain.model.User;
 import com.walleton.api.v1.dto.user.UserRequest;
 import com.walleton.api.v1.dto.user.UserResponse;
+import com.walleton.domain.model.User;
 import com.walleton.mapper.UserMapper;
 import com.walleton.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
