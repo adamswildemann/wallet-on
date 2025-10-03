@@ -7,6 +7,7 @@ import org.mapstruct.*;
 
 import java.util.List;
 
+
 @Mapper(componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface UserMapper {

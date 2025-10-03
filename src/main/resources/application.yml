@@ -1,6 +1,10 @@
 spring:
   application:
     name: wallet-on
+  security:
+    user:
+      name: admin
+      password: admin123
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
