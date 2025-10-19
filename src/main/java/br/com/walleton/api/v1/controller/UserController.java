@@ -4,14 +4,14 @@ import br.com.walleton.api.v1.dto.user.UserRequest;
 import br.com.walleton.api.v1.dto.user.UserResponse;
 import br.com.walleton.service.UserService;
 import jakarta.validation.Valid;
+import lombok.Getter;
+import org.apache.coyote.Response;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,6 +28,16 @@ public class UserController {
         UserResponse created = service.create(request);
         URI location = URI.create("/api/v1/users/" + created.id());
         return ResponseEntity.created(location).body(created);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserResponse> findById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> findAll(){
+        return ResponseEntity.ok(service.findAll());
     }
 
 }
