@@ -2,6 +2,7 @@ package br.com.walleton.service;
 
 import br.com.walleton.api.v1.dto.user.UserRequest;
 import br.com.walleton.api.v1.dto.user.UserResponse;
+import br.com.walleton.api.v1.dto.user.UserUpdateRequest;
 import br.com.walleton.domain.model.User;
 import br.com.walleton.domain.model.Wallet;
 import br.com.walleton.exception.ResourceNotFoundException;
@@ -33,17 +34,29 @@ public class UserService {
         return mapper.toResponse(salvo);
     }
 
-    public UserResponse findById(Long id){
+    public UserResponse findById(Long id) {
         User user = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Id " + id + " não encontrado!"));
         return mapper.toResponse(user);
     }
 
-    public List<UserResponse> findAll(){
+    public List<UserResponse> findAll() {
         List<User> users = repository.findAll();
         return users.stream()
                 .map(mapper::toResponse)
                 .toList();
+    }
+
+    @Transactional
+    public UserResponse update(Long id, UserUpdateRequest request) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado!"));
+
+        user.setEmail(request.email());
+        user.setPhoneNumber(request.phoneNumber());
+
+        User saved = repository.save(user);
+        return mapper.toResponse(saved);
     }
 
 }

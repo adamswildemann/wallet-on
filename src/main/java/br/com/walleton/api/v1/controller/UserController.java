@@ -2,10 +2,12 @@ package br.com.walleton.api.v1.controller;
 
 import br.com.walleton.api.v1.dto.user.UserRequest;
 import br.com.walleton.api.v1.dto.user.UserResponse;
+import br.com.walleton.api.v1.dto.user.UserUpdateRequest;
 import br.com.walleton.service.UserService;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import org.apache.coyote.Response;
+import org.mapstruct.control.MappingControl;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,11 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserResponse>> findAll(){
         return ResponseEntity.ok(service.findAll());
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserResponse> update(@PathVariable Long id, @Valid @RequestBody UserUpdateRequest request){
+        return ResponseEntity.ok(service.update(id, request));
     }
 
 }
