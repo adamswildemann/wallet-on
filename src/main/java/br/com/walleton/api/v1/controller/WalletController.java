@@ -29,4 +29,10 @@ public class WalletController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping(value = "/{userId}/withdraw", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WalletResponse> withdraw(@PathVariable Long userId, @Valid @RequestBody OperationRequest request) {
+        WalletResponse response = service.withdraw(userId, request);
+        return ResponseEntity.ok(response);
+    }
+
 }
