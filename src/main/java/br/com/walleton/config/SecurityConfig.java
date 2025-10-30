@@ -19,6 +19,7 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/v3/api-docs.yaml"
                         ).permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(basic -> {

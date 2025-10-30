@@ -33,7 +33,7 @@ public class Transaction {
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
 
-    @Column(length = 255)
+    @Column
     private String description;
 
 }
